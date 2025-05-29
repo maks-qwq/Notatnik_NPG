@@ -14,13 +14,8 @@ public:
 
 private:
     QTextEdit *textEdit;
+    void openFile();
+    void saveFile();
 };
-void PlikZapisany() {
-    cout << "Plik zapisany";
-}
-
-void PlikOtwarty() {
-    cout << "Plik otwarty";
-}
 
 #endif // MAINWINDOW_H
