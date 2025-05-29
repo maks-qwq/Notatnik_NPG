@@ -12,8 +12,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void openFile();
+    void saveFile();
+    void newFile();
+
 private:
     QTextEdit *textEdit;
+    QString currentFile;
 };
 
 #endif // MAINWINDOW_H
