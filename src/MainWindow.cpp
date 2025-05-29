@@ -9,6 +9,13 @@ MainWindow::MainWindow(QWidget *parent)
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
 
     textEdit = new QTextEdit(this);
+    QPushButton *openButton = new QPushButton("Otwórz", this);
+    QPushButton *saveButton = new QPushButton("Zapisz", this);
+    layout->addWidget(openButton);
+    layout->addWidget(saveButton);
+    
+    connect(openButton, &QPushButton::clicked, this, &MainWindow::openFile);
+    connect(saveButton, &QPushButton::clicked, this, &MainWindow::saveFile);
     layout->addWidget(textEdit);
 
     centralWidget->setLayout(layout);
