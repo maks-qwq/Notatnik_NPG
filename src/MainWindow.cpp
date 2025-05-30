@@ -10,6 +10,11 @@ MainWindow::MainWindow(QWidget *parent)
     textEdit = new QTextEdit(this);
     layout->addWidget(textEdit);
 
+    colorButton = new QPushButton("Zmien koloru tekstu", this);
+    layout ->addWidget(colorButton);
+
+    connect(colorButton, &QPushButton::clicked, this, &MainWindow::onChangeTextColor);
+
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
     setWindowTitle("Notatnik");
@@ -19,3 +24,10 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 MainWindow::~MainWindow() = default;
+
+void MainWindow::onChangeTextColor() {
+    QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Wybierz kolor tekstu");
+    if (color.isValid()) {
+        textEdit->setTextColor(color);
+    }
+}
