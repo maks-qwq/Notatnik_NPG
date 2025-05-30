@@ -21,7 +21,7 @@
   Zadanie polega na dodaniu funkcji zmiany czcionki w edytowanym pliku tekstowym.  
   _Oczekiwany wynik:_ Użytkownik może wybrać czcionkę z listy dostępnych czcionek.
 
-- **Zmiana koloru czcionki**  
+- [x] **Zmiana koloru czcionki**  
   Zadanie polega na implementacji funkcji pozwalającej na zmianę koloru czcionki w edytowanym pliku.  
   _Oczekiwany wynik:_ Użytkownik może zmieniać kolor tekstu w zależności od preferencji.
 
@@ -59,13 +59,13 @@
 
 ## Priorytety zadań
 
-| Zadanie                        | Priorytet   | Status      |
-| ------------------------------ | ----------- | ----------- |
+| Zadanie                        | Priorytet   | Status           |
+| ------------------------------ | ----------- |------------------|
 | Otwieranie plików              | Wysoki      | Do zrealizowania |
 | Tworzenie nowych plików        | Wysoki      | Do zrealizowania |
 | Edycja plików                  | Wysoki      | Do zrealizowania |
 | Zmiana czcionki                | Średni      | Do zrealizowania |
-| Zmiana koloru czcionki         | Średni      | Do zrealizowania |
+| Zmiana koloru czcionki         | Średni      | Ukończono        |
 | Skróty klawiszowe              | Średni      | Do zrealizowania |
 | Komunikaty błędów              | Średni      | Do zrealizowania |
 | Testowanie funkcji             | Wysoki      | Do zrealizowania |
