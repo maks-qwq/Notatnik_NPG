@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QTextEdit>
 #include <QPushButton>
+#include <QStatusBar>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -14,6 +15,7 @@ public:
 
 private:
     QTextEdit *textEdit;
+    QStatusBar *statusBar_;
     void openFile();
     void saveFile();
 };
