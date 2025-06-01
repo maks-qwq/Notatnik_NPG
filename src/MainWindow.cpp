@@ -2,9 +2,11 @@
 #include <QVBoxLayout>
 #include <QWidget>
 #include <QMessageBox>
+#include <QStatusBar>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
+        
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
 
@@ -13,14 +15,18 @@ MainWindow::MainWindow(QWidget *parent)
     QPushButton *saveButton = new QPushButton("Zapisz", this);
     layout->addWidget(openButton);
     layout->addWidget(saveButton);
+    layout->addWidget(textEdit);
     
     connect(openButton, &QPushButton::clicked, this, &MainWindow::openFile);
     connect(saveButton, &QPushButton::clicked, this, &MainWindow::saveFile);
-    layout->addWidget(textEdit);
 
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
     setWindowTitle("Notatnik");
+        
+    statusBar_ = new QStatusBar(this);
+    setStatusBar(statusBar_);
+    statusBar_->showMessage("Gotowy");
 
     resize(800, 600);
     move(100, 100);
@@ -32,7 +38,7 @@ void MainWindow::openFile() {
         QFile file(filename);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QTextStream in(&file);
-            ui->textEdit->setPlainText(in.readAll());
+            textEdit->setPlainText(in.readAll());
             file.close();
             QMessageBox::information(this, "Otworzono", "Plik otwarty.");
         } else {
@@ -47,7 +53,7 @@ void MainWindow::saveFile() {
         QFile file(filename);
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             QTextStream out(&file);
-            out << ui->textEdit->toPlainText();
+            out << textEdit->toPlainText();
             file.close();
             QMessageBox::information(this, "Zapisano", "Plik zapisany.");
         } else {
