@@ -59,16 +59,16 @@
 
 ## Priorytety zadań
 
-| Zadanie                        | Priorytet   | Status           |
-| ------------------------------ | ----------- |------------------|
-| Otwieranie plików              | Wysoki      | Ukończono        |
-| Tworzenie nowych plików        | Wysoki      | Ukończono        |
-| Edycja plików                  | Wysoki      | Ukończono        |
-| Zmiana czcionki                | Średni      | Do zrealizowania |
-| Zmiana koloru czcionki         | Średni      | Ukończono        |
-| Skróty klawiszowe              | Średni      | Do zrealizowania |
-| Komunikaty błędów              | Średni      | Do zrealizowania |
-| Testowanie funkcji             | Wysoki      | Do zrealizowania |
-| Poprawki i optymalizacja       | Średni      | Do zrealizowania |
-| Dokumentacja użytkownika       | Niski       | Do zrealizowania |
-| Dokumentacja techniczna        | Niski       | Do zrealizowania |
+| Zadanie                  | Priorytet | Status           |
+|--------------------------|-----------|------------------|
+| Otwieranie plików        | Wysoki    | Ukończono        |
+| Tworzenie nowych plików  | Wysoki    | Ukończono        |
+| Edycja plików            | Wysoki    | Ukończono        |
+| Zmiana czcionki          | Średni    | Do zrealizowania |
+| Zmiana koloru czcionki   | Średni    | Ukończono        |
+| Skróty klawiszowe        | Średni    | Do zrealizowania |
+| Komunikaty błędów        | Średni    | Do zrealizowania |
+| Testowanie funkcji       | Wysoki    | Do zrealizowania |
+| Poprawki i optymalizacja | Średni    | Do zrealizowania |
+| Dokumentacja użytkownika | Niski     | Do zrealizowania |
+| Raport ze spotkań        | Wysoki    | Do zrealizowania |
