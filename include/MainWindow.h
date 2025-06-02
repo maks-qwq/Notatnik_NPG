@@ -16,9 +16,18 @@ public:
     ~MainWindow();
 
 private slots:
-    void onChangeTextColor();
+
+    void openFile();
+    void saveFile();
+    void newFile();
 
 private:
+    QTextEdit *textEdit;
+    QString currentFile;
+
+    void onChangeTextColor();
+
+
     QTextEdit *textEdit;
 
     QStatusBar *statusBar_;
@@ -26,6 +35,7 @@ private:
     void saveFile();
 
     QPushButton *colorButton;
+
 };
 
 #endif // MAINWINDOW_H
