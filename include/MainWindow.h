@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QTextEdit>
-#include <QPushButton>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -11,6 +10,9 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+private slots:
+    void showAboutDialog(); // ← Dodany slot
 
 private:
     QTextEdit *textEdit;
