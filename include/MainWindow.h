@@ -4,7 +4,9 @@
 #include <QMainWindow>
 #include <QTextEdit>
 #include <QPushButton>
+#include <QStatusBar>
 #include <QColorDialog>
+
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -18,6 +20,11 @@ private slots:
 
 private:
     QTextEdit *textEdit;
+
+    QStatusBar *statusBar_;
+    void openFile();
+    void saveFile();
+
     QPushButton *colorButton;
 };
 
