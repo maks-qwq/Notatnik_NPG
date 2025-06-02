@@ -4,15 +4,15 @@
 ## Backlog zadań
 
 ### 1. **Podstawowe funkcje**
--  **Otwieranie plików**  
+- [x] **Otwieranie plików**  
   Zadanie polega na zaimplementowaniu funkcjonalności otwierania istniejących plików tekstowych w aplikacji.  
   _Oczekiwany wynik:_ Możliwość otwierania plików w formacie .txt i ich edytowanie.
 
--  **Tworzenie nowych plików**  
+- [x] **Tworzenie nowych plików**  
   Zadanie polega na umożliwieniu użytkownikowi tworzenia nowych, pustych plików tekstowych.  
   _Oczekiwany wynik:_ Możliwość rozpoczęcia pracy z nowym plikiem.
 
--  **Edycja plików**  
+- [x] **Edycja plików**  
   Zadanie polega na umożliwieniu użytkownikowi edytowania treści plików tekstowych.  
   _Oczekiwany wynik:_ Edycja i zapis zmian w pliku.
 
@@ -61,9 +61,9 @@
 
 | Zadanie                        | Priorytet   | Status           |
 | ------------------------------ | ----------- |------------------|
-| Otwieranie plików              | Wysoki      | Do zrealizowania |
-| Tworzenie nowych plików        | Wysoki      | Do zrealizowania |
-| Edycja plików                  | Wysoki      | Do zrealizowania |
+| Otwieranie plików              | Wysoki      | Ukończono        |
+| Tworzenie nowych plików        | Wysoki      | Ukończono        |
+| Edycja plików                  | Wysoki      | Ukończono        |
 | Zmiana czcionki                | Średni      | Do zrealizowania |
 | Zmiana koloru czcionki         | Średni      | Ukończono        |
 | Skróty klawiszowe              | Średni      | Do zrealizowania |
