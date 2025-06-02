@@ -28,11 +28,9 @@ private:
     void onChangeTextColor();
 
 
-    QTextEdit *textEdit;
-
     QStatusBar *statusBar_;
-    void openFile();
-    void saveFile();
+    //void openFile();
+    //void saveFile();
 
     QPushButton *colorButton;
 

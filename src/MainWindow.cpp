@@ -82,7 +82,7 @@ void MainWindow::saveFile() {
 
 MainWindow::~MainWindow() = default;
 
-
+/*
 void MainWindow::openFile() {
 
     QString fileName = QFileDialog::getOpenFileName(this, "Otwórz plik", "", "Pliki tekstowe (*.txt)");
@@ -116,13 +116,14 @@ void MainWindow::saveFile() {
         currentFile = fileName;
         statusBar()->showMessage("Plik zapisany: " + fileName);
     }
-}
+}*/
 
-void MainWindow::newFile() {
+void MainWindow::newFile()
+{
     textEdit->clear();
     currentFile.clear();
     statusBar()->showMessage("Nowy plik utworzony");
-
+}
 void MainWindow::onChangeTextColor() {
     QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Wybierz kolor tekstu");
     if (color.isValid()) {
