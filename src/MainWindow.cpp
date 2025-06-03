@@ -1,4 +1,3 @@
-#include "MainWindow.h"
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -9,6 +8,15 @@
 #include <QMenuBar>
 #include <QMessageBox>
 #include <QStatusBar>
+#include <QMainWindow>
+#include <QTextEdit>
+#include <QToolBar>
+#include <QAction>
+#include <QApplication>
+#include <QTextCharFormat>
+#include <QFont>
+#include <QKeySequence>
+#include <QShortcut>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
@@ -131,3 +139,46 @@ void MainWindow::onChangeTextColor() {
     }
 
 }
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+    QMainWindow window;
+    QTextEdit* editor = new QTextEdit();
+
+    window.setCentralWidget(editor);
+    QToolBar* toolbar = window.addToolBar("Format");
+
+    // Pogrubienie
+    QAction* boldAction = toolbar->addAction("B");
+    boldAction->setShortcut(QKeySequence("Ctrl+B"));
+    boldAction->setCheckable(true);
+    QObject::connect(boldAction, &QAction::triggered, [=]() {
+        QTextCharFormat fmt;
+        fmt.setFontWeight(editor->fontWeight() == QFont::Bold ? QFont::Normal : QFont::Bold);
+        editor->mergeCurrentCharFormat(fmt);
+    });
+
+    // Kursywa
+    QAction* italicAction = toolbar->addAction("I");
+    italicAction->setShortcut(QKeySequence("Ctrl+I"));
+    italicAction->setCheckable(true);
+    QObject::connect(italicAction, &QAction::triggered, [=]() {
+        QTextCharFormat fmt;
+        fmt.setFontItalic(!editor->fontItalic());
+        editor->mergeCurrentCharFormat(fmt);
+    });
+
+    // Podkreślenie
+    QAction* underlineAction = toolbar->addAction("U");
+    underlineAction->setShortcut(QKeySequence("Ctrl+U"));
+    underlineAction->setCheckable(true);
+    QObject::connect(underlineAction, &QAction::triggered, [=]() {
+        QTextCharFormat fmt;
+        fmt.setFontUnderline(!editor->fontUnderline());
+        editor->mergeCurrentCharFormat(fmt);
+    });
+
+    window.setWindowTitle("Notatnik Qt");
+    window.resize(600, 400);
+    window.show();
+    return app.exec();
+}    
