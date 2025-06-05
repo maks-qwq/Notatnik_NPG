@@ -1,3 +1,4 @@
+#include "MainWindow.h"
 #include <QVBoxLayout>
 #include <QWidget>
 
@@ -34,11 +35,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(openButton, &QPushButton::clicked, this, &MainWindow::openFile);
     connect(saveButton, &QPushButton::clicked, this, &MainWindow::saveFile);
 
-    colorButton = new QPushButton("Zmien koloru tekstu", this);
-    layout ->addWidget(colorButton);
-
-    connect(colorButton, &QPushButton::clicked, this, &MainWindow::onChangeTextColor);
-
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
     setWindowTitle("Notatnik");
@@ -57,40 +53,7 @@ MainWindow::MainWindow(QWidget *parent)
     resize(800, 600);
     move(100, 100);
 }
-
-void MainWindow::openFile() {
-    QString filename = QFileDialog::getOpenFileName(this, "Otwórz plik");
-    if (!filename.isEmpty()) {
-        QFile file(filename);
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-            QTextStream in(&file);
-            textEdit->setPlainText(in.readAll());
-            file.close();
-            QMessageBox::information(this, "Otworzono", "Plik otwarty.");
-        } else {
-            QMessageBox::warning(this, "Błąd", "Nie można otworzyć pliku.");
-        }
-    }
-}
-
-void MainWindow::saveFile() {
-    QString filename = QFileDialog::getSaveFileName(this, "Zapisz plik");
-    if (!filename.isEmpty()) {
-        QFile file(filename);
-        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-            QTextStream out(&file);
-            out << textEdit->toPlainText();
-            file.close();
-            QMessageBox::information(this, "Zapisano", "Plik zapisany.");
-        } else {
-            QMessageBox::warning(this, "Błąd", "Nie można zapisać pliku.");
-        }
-    }
-}
-
 MainWindow::~MainWindow() = default;
-
-/*
 void MainWindow::openFile() {
 
     QString fileName = QFileDialog::getOpenFileName(this, "Otwórz plik", "", "Pliki tekstowe (*.txt)");
@@ -111,74 +74,42 @@ void MainWindow::openFile() {
 }
 
 void MainWindow::saveFile() {
-    QString fileName = currentFile.isEmpty() ? QFileDialog::getSaveFileName(this, "Zapisz plik", "", "Pliki tekstowe (*.txt)") : currentFile;
-    if (!fileName.isEmpty()) {
-        QFile file(fileName);
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+    QString filename = currentFile.isEmpty() ? QFileDialog::getSaveFileName(this, "Zapisz plik") : currentFile;
+    if (!filename.isEmpty()) {
+        QFile file(filename);
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            QTextStream out(&file);
+            out << textEdit->toPlainText();
+            file.close();
+            currentFile = filename;
+            statusBar()->showMessage("Plik zapisany: " + filename);
+        } else {
             QMessageBox::warning(this, "Błąd", "Nie można zapisać pliku.");
-            return;
         }
-        QTextStream out(&file);
-        out << textEdit->toPlainText();
-        file.close();
-        currentFile = fileName;
-        statusBar()->showMessage("Plik zapisany: " + fileName);
     }
-}*/
+}
 
-void MainWindow::newFile()
-{
+void MainWindow::newFile() {
     textEdit->clear();
     currentFile.clear();
     statusBar()->showMessage("Nowy plik utworzony");
 }
-void MainWindow::onChangeTextColor() {
-    QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Wybierz kolor tekstu");
-    if (color.isValid()) {
-        textEdit->setTextColor(color);
-    }
 
+
+void MainWindow::toggleBold() {
+    QTextCharFormat fmt;
+    fmt.setFontWeight(textEdit->fontWeight() == QFont::Bold ? QFont::Normal : QFont::Bold);
+    textEdit->mergeCurrentCharFormat(fmt);
 }
-int main(int argc, char *argv[]) {
-    QApplication app(argc, argv);
-    QMainWindow window;
-    QTextEdit* editor = new QTextEdit();
 
-    window.setCentralWidget(editor);
-    QToolBar* toolbar = window.addToolBar("Format");
+void MainWindow::toggleItalic() {
+    QTextCharFormat fmt;
+    fmt.setFontItalic(!textEdit->fontItalic());
+    textEdit->mergeCurrentCharFormat(fmt);
+}
 
-    // Pogrubienie
-    QAction* boldAction = toolbar->addAction("B");
-    boldAction->setShortcut(QKeySequence("Ctrl+B"));
-    boldAction->setCheckable(true);
-    QObject::connect(boldAction, &QAction::triggered, [=]() {
-        QTextCharFormat fmt;
-        fmt.setFontWeight(editor->fontWeight() == QFont::Bold ? QFont::Normal : QFont::Bold);
-        editor->mergeCurrentCharFormat(fmt);
-    });
-
-    // Kursywa
-    QAction* italicAction = toolbar->addAction("I");
-    italicAction->setShortcut(QKeySequence("Ctrl+I"));
-    italicAction->setCheckable(true);
-    QObject::connect(italicAction, &QAction::triggered, [=]() {
-        QTextCharFormat fmt;
-        fmt.setFontItalic(!editor->fontItalic());
-        editor->mergeCurrentCharFormat(fmt);
-    });
-
-    // Podkreślenie
-    QAction* underlineAction = toolbar->addAction("U");
-    underlineAction->setShortcut(QKeySequence("Ctrl+U"));
-    underlineAction->setCheckable(true);
-    QObject::connect(underlineAction, &QAction::triggered, [=]() {
-        QTextCharFormat fmt;
-        fmt.setFontUnderline(!editor->fontUnderline());
-        editor->mergeCurrentCharFormat(fmt);
-    });
-
-    window.setWindowTitle("Notatnik Qt");
-    window.resize(600, 400);
-    window.show();
-    return app.exec();
-}    
+void MainWindow::toggleUnderline() {
+    QTextCharFormat fmt;
+    fmt.setFontUnderline(!textEdit->fontUnderline());
+    textEdit->mergeCurrentCharFormat(fmt);
+}
