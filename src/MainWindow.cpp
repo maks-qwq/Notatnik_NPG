@@ -10,6 +10,10 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
 
+    autoSaveTimer = new QTimer(this); //stworzenie timera
+    connect(autoSaveTimer, &QTimer::timeout, this, &MainWindow::autoSaveFile);
+    autoSaveTimer->start(5 * 60 * 1000); //ustawienie 5 minut jako timer autozapisu
+
     textEdit = new QTextEdit(this);
     QPushButton *openButton = new QPushButton("Otwórz", this);
     QPushButton *saveButton = new QPushButton("Zapisz", this);
@@ -40,7 +44,8 @@ void MainWindow::openFile() {
             QTextStream in(&file);
             textEdit->setPlainText(in.readAll());
             file.close();
-            QMessageBox::information(this, "Otworzono", "Plik otwarty.");
+            currentFile = filename;
+            statusBar()->showMessage("Plik otwarty: " + filename);
         } else {
             QMessageBox::warning(this, "Błąd", "Nie można otworzyć pliku.");
         }
@@ -55,10 +60,27 @@ void MainWindow::saveFile() {
             QTextStream out(&file);
             out << textEdit->toPlainText();
             file.close();
-            QMessageBox::information(this, "Zapisano", "Plik zapisany.");
+            currentFile = filename;
+            statusBar()->showMessage("Plik zapisany: " + filename);
         } else {
             QMessageBox::warning(this, "Błąd", "Nie można zapisać pliku.");
         }
+    }
+}
+
+void MainWindow::autoSaveFile() { // funkcja autozapisu
+    if (currentFile.isEmpty()) { // nie zapisuje jeśli plik nie został wybrany
+        return;
+    }
+
+    QFile file(currentFile);
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+        out << textEdit->toPlainText();
+        file.close();
+        statusBar()->showMessage("Autozapisano: " + currentFile);
+    } else {
+        statusBar()->showMessage("Blad autozapisu");
     }
 }
 
