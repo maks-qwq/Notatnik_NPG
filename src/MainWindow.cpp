@@ -1,3 +1,9 @@
+/*
+Projekt notatnika stworzony na zajęcia z Narzędzi Pracy Grupowej - AiR AGH I rok
+
+Przy tworzeniu projektu korzystaliśmy z języka C++ i frameworku Qt
+
+*/
 #include "MainWindow.h"
 #include <QVBoxLayout>
 #include <QWidget>
