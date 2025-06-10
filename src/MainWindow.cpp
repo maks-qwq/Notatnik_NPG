@@ -53,17 +53,17 @@ void MainWindow::openFile() {
 }
 
 void MainWindow::saveFile() {
-    QString filename = QFileDialog::getSaveFileName(this, "Zapisz plik");
-    if (!filename.isEmpty()) {
+    QString filename = QFileDialog::getSaveFileName(this, "Zapisz plik"); //stworzenie przycisku umożliwiającego zapis
+    if (!filename.isEmpty()) { // sprawdzenie czy plik który próbujemy zapisać istnieje
         QFile file(filename);
         if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
             QTextStream out(&file);
             out << textEdit->toPlainText();
             file.close();
             currentFile = filename;
-            statusBar()->showMessage("Plik zapisany: " + filename);
+            statusBar()->showMessage("Plik zapisany: " + filename); //zmiana statusu pliku
         } else {
-            QMessageBox::warning(this, "Błąd", "Nie można zapisać pliku.");
+            QMessageBox::warning(this, "Błąd", "Nie można zapisać pliku."); // wyrzucenie błędu z powodu problemu z plikiem
         }
     }
 }
@@ -73,14 +73,14 @@ void MainWindow::autoSaveFile() { // funkcja autozapisu
         return;
     }
 
-    QFile file(currentFile);
+    QFile file(currentFile); //nadpisanie pliku
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream out(&file);
         out << textEdit->toPlainText();
         file.close();
-        statusBar()->showMessage("Autozapisano: " + currentFile);
+        statusBar()->showMessage("Autozapisano: " + currentFile); //wiadomość do użytkownika że plik został zapisany
     } else {
-        statusBar()->showMessage("Blad autozapisu");
+        statusBar()->showMessage("Blad autozapisu"); //wiadomość do użytkownika że jest problem z autozapisem pliku
     }
 }
 
