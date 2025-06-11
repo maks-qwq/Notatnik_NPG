@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
 
-    textEdit = new QTextEdit(this);
+    textEdit = new QTextEdit(this); // stworzenie QTextEdit (edytor tekstu)
     QPushButton *openButton = new QPushButton("Otwórz", this);
     QPushButton *saveButton = new QPushButton("Zapisz", this);
     layout->addWidget(openButton);
@@ -32,9 +32,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(openButton, &QPushButton::clicked, this, &MainWindow::openFile);
     connect(saveButton, &QPushButton::clicked, this, &MainWindow::saveFile);
 
-    colorButton = new QPushButton("Zmien koloru tekstu", this);
+    colorButton = new QPushButton("Zmien koloru tekstu", this); // przycisk do zmiany koloru czcionki
     layout ->addWidget(colorButton);
 
+    // połączenie przycisku z odpowiednim slotem
     connect(colorButton, &QPushButton::clicked, this, &MainWindow::onChangeTextColor);
 
     centralWidget->setLayout(layout);
@@ -138,6 +139,7 @@ void MainWindow::newFile()
     currentFile.clear();
     statusBar()->showMessage("Nowy plik utworzony");
 }
+// Funkcja zmieniająca kolor czcionki
 void MainWindow::onChangeTextColor() {
     QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Wybierz kolor tekstu");
     if (color.isValid()) {
