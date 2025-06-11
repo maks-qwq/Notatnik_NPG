@@ -37,17 +37,17 @@ MainWindow::MainWindow(QWidget *parent)
 }
 
 void MainWindow::openFile() {
-    QString filename = QFileDialog::getOpenFileName(this, "Otwórz plik");
-    if (!filename.isEmpty()) {
+    QString filename = QFileDialog::getOpenFileName(this, "Otwórz plik"); //otwarcie pliku .txt
+    if (!filename.isEmpty()) { //sprawdzenie czy plik istnieje
         QFile file(filename);
         if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QTextStream in(&file);
             textEdit->setPlainText(in.readAll());
             file.close();
             currentFile = filename;
-            statusBar()->showMessage("Plik otwarty: " + filename);
+            statusBar()->showMessage("Plik otwarty: " + filename); //komunikat o otwarciu pliku
         } else {
-            QMessageBox::warning(this, "Błąd", "Nie można otworzyć pliku.");
+            QMessageBox::warning(this, "Błąd", "Nie można otworzyć pliku."); // komunikat o błędzie otwarcia pliku
         }
     }
 }
