@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent)
     resize(800, 600);
     move(100, 100);
 }
-
+// ---------- funkcja Otwórz plik --------------- //
 void MainWindow::openFile() {
     QString filename = QFileDialog::getOpenFileName(this, "Otwórz plik");
     if (!filename.isEmpty()) {
@@ -71,6 +71,7 @@ void MainWindow::openFile() {
     }
 }
 
+// ---------- funkcja zapisz plik --------------- //
 void MainWindow::saveFile() {
     QString filename = QFileDialog::getSaveFileName(this, "Zapisz plik");
     if (!filename.isEmpty()) {
@@ -89,6 +90,9 @@ void MainWindow::saveFile() {
 MainWindow::~MainWindow() = default;
 
 /*
+-------------- a tutaj doszło do podwójnego napisania kodu o tych samych funkcjonalnościach --------------
+
+// ---------- funkcja Otwórz plik --------------- //
 void MainWindow::openFile() {
 
     QString fileName = QFileDialog::getOpenFileName(this, "Otwórz plik", "", "Pliki tekstowe (*.txt)");
@@ -108,6 +112,8 @@ void MainWindow::openFile() {
     }
 }
 
+
+// ---------- funkcja zapisz plik --------------- //
 void MainWindow::saveFile() {
     QString fileName = currentFile.isEmpty() ? QFileDialog::getSaveFileName(this, "Zapisz plik", "", "Pliki tekstowe (*.txt)") : currentFile;
     if (!fileName.isEmpty()) {
@@ -124,6 +130,8 @@ void MainWindow::saveFile() {
     }
 }*/
 
+
+// ---------- funkcja nowy plik --------------- //
 void MainWindow::newFile()
 {
     textEdit->clear();
