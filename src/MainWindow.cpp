@@ -3,32 +3,29 @@
 #include <QWidget>
 #include <QColorDialog>
 #include <QPushButton>
-#include <QAction>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent) {
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(centralWidget);
 
-    textEdit = new QTextEdit(this);
+    textEdit = new QTextEdit(this);  // QTextEdit (edytor tekstu)
     layout->addWidget(textEdit);
-    colorButton = new QPushButton("Zmien koloru tekstu", this);
-    layout ->addWidget(colorButton);
 
-    //połączenie przysiuku do zmiany tekstu ze slotem
+    //przycisk do zmiany koloru czcionki
+    colorButton = new QPushButton("Change Text Color", this);
+    layout->addWidget(colorButton);
     connect(colorButton, &QPushButton::clicked, this, &MainWindow::onChangeTextColor);
 
-    //przyciski undo i redo
+    // przyciski undo i redo
     undoButton = new QPushButton("Undo", this);
     redoButton = new QPushButton("Redo", this);
     layout->addWidget(undoButton);
     layout->addWidget(redoButton);
 
-    // połączenie przycisków ze slotami
+    // Łączenie przycisków z odpowiednimi slotami
     connect(undoButton, &QPushButton::clicked, this, &MainWindow::onUndo);
     connect(redoButton, &QPushButton::clicked, this, &MainWindow::onRedo);
-
-
 
     centralWidget->setLayout(layout);
     setCentralWidget(centralWidget);
@@ -41,20 +38,22 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() = default;
 
 void MainWindow::onChangeTextColor() {
-    QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Wybierz kolor tekstu");
+    QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Select Text Color");
+
     if (color.isValid()) {
         textEdit->setTextColor(color);
     }
 }
+
 void MainWindow::onUndo() {
-    // operacja undo
+    //  operacja undo
     if (textEdit->document()->isUndoAvailable()) {
         textEdit->undo();
     }
 }
 
 void MainWindow::onRedo() {
-    // operacja redo
+    //  operacja redo
     if (textEdit->document()->isRedoAvailable()) {
         textEdit->redo();
     }

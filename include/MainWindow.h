@@ -15,8 +15,8 @@ public:
 
     private slots:
         void onChangeTextColor();  // Slot do zmiany koloru czcionki
-        void onUndo();  // Slot do wykonania operacji undo
-        void onRedo();  // Slot do wykonania operacji redo
+    void onUndo();  // Slot do wykonania operacji undo
+    void onRedo();  // Slot do wykonania operacji redo
 
 private:
     QTextEdit *textEdit;  // Edytor tekstu
