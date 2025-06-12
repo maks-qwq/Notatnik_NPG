@@ -48,10 +48,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     // ---------------- Menu Plik ---------------- //
     QMenu *fileMenu = menuBar()->addMenu("Plik");
-
-    fileMenu->addAction("Nowy", this, &MainWindow::newFile);
-    fileMenu->addAction("Otwórz", this, &MainWindow::openFile);
-    fileMenu->addAction("Zapisz", this, &MainWindow::saveFile);
+        // opcja nowy w plik
+        fileMenu->addAction("Nowy", this, &MainWindow::newFile);
+        //opcja otwórz w plik
+        fileMenu->addAction("Otwórz", this, &MainWindow::openFile);
+        // opcja zapisz w plik
+        fileMenu->addAction("Zapisz", this, &MainWindow::saveFile);
 
     resize(800, 600);
     move(100, 100);
