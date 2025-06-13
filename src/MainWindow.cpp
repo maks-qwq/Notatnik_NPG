@@ -55,7 +55,9 @@ MainWindow::MainWindow(QWidget *parent)
         // opcja zapisz w plik
         fileMenu->addAction("Zapisz", this, &MainWindow::saveFile);
 
+    // ustawienie wymiarów okna notatnika
     resize(800, 600);
+    //ustawienie położenia notatnika na ekranie
     move(100, 100);
 }
 // ---------- funkcja Otwórz plik --------------- //
