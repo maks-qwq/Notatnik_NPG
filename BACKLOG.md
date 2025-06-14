@@ -59,6 +59,7 @@
 
 ## Priorytety zadań
 
+
 | Zadanie                        | Priorytet   | Status           |
 | ------------------------------ | ----------- |------------------|
 | Otwieranie plików              | Wysoki      | Ukończono        |
