@@ -15,7 +15,7 @@ MainWindow::MainWindow(QWidget *parent)
     autoSaveTimer->start(5 * 60 * 1000); //ustawienie 5 minut jako timer autozapisu
 
     textEdit = new QTextEdit(this);
-    QPushButton *openButton = new QPushButton("Otwórz", this);
+    QPushButton *openButton = new QPushButton("Otwórz", this); //stworzenie przycisku w menu
     QPushButton *saveButton = new QPushButton("Zapisz", this);
     layout->addWidget(openButton);
     layout->addWidget(saveButton);
@@ -40,7 +40,7 @@ void MainWindow::openFile() {
     QString filename = QFileDialog::getOpenFileName(this, "Otwórz plik"); //otwarcie pliku .txt
     if (!filename.isEmpty()) { //sprawdzenie czy plik istnieje
         QFile file(filename);
-        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) { // sprawdzenie czy plik jest otwarty i czy możemy na nim działać
             QTextStream in(&file);
             textEdit->setPlainText(in.readAll());
             file.close();
@@ -56,7 +56,7 @@ void MainWindow::saveFile() {
     QString filename = QFileDialog::getSaveFileName(this, "Zapisz plik"); //stworzenie przycisku umożliwiającego zapis
     if (!filename.isEmpty()) { // sprawdzenie czy plik który próbujemy zapisać istnieje
         QFile file(filename);
-        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) { // sprawdzenie czy plik jest otwarty i czy możemy na nim działać
             QTextStream out(&file);
             out << textEdit->toPlainText();
             file.close();
@@ -77,7 +77,7 @@ void MainWindow::autoSaveFile() { // funkcja autozapisu
     if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         QTextStream out(&file);
         out << textEdit->toPlainText();
-        file.close();
+        file.close(); //zamknięcie pliku
         statusBar()->showMessage("Autozapisano: " + currentFile); //wiadomość do użytkownika że plik został zapisany
     } else {
         statusBar()->showMessage("Blad autozapisu"); //wiadomość do użytkownika że jest problem z autozapisem pliku
