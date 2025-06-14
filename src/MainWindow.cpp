@@ -30,12 +30,13 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow() = default;
 
-// 🔽 Dodajemy funkcję showAboutDialog – nie modyfikuje niczego innego
+// 🔽 Dodajemy funkcję showAboutDialog
 void MainWindow::showAboutDialog() {
     QString aboutText =
         "📝 <b>Notatnik</b><br>"
         "Wersja 1.0.0<br><br>"
         "Prosty edytor tekstu napisany w Qt.<br><br>"
+        "Autorzy: Maksymilian Zych, Hubert Wawak, Wojciech Trojak, Adraizn Witek, Michał Wójcik <br><br>"
         "© 2025<br>";
 
     QMessageBox::about(this, "O programie", aboutText);
