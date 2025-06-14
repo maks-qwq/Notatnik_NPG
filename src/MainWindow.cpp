@@ -111,14 +111,7 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow() = default;
 
 
-// Zmiana koloru tekstu
-void MainWindow::onChangeTextColor() {
-    QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Select Text Color");
 
-    if (color.isValid()) {
-        textEdit->setTextColor(color);
-    }
-}
 
 // Cofanie operacji
 void MainWindow::onUndo() {
@@ -163,8 +156,8 @@ void MainWindow::openFile() {
         QTextStream in(&file);
         textEdit->setPlainText(in.readAll());
         file.close();
-        currentFile = fileName;
-        statusBar()->showMessage("Plik otwarty: " + fileName);
+        currentFile = filename;
+        statusBar()->showMessage("Plik otwarty: " + filename);
     }
 }
 
@@ -205,19 +198,23 @@ void MainWindow::newFile()
 }
 
 // Funkcja zmieniająca kolor czcionki
-void MainWindow::onChangeTextColor() {
+void MainWindow::onChangeTextColor()
+{
     QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Wybierz kolor tekstu");
-    if (color.isValid()) {
+    if (color.isValid())
+    {
         textEdit->setTextColor(color);
+    }
+}
 
 
-
-
-void MainWindow::onRedo() {
+void MainWindow::onRedo()
+{
     //  operacja redo
     if (textEdit->document()->isRedoAvailable()) {
         textEdit->redo();
     }
+}
 
 
 void MainWindow::autoSaveFile() { // funkcja autozapisu
@@ -237,7 +234,7 @@ void MainWindow::autoSaveFile() { // funkcja autozapisu
     }
 }
 
-MainWindow::~MainWindow() = default;
+
 
 
 //funkcja pogrubienia
