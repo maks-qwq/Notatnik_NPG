@@ -4,10 +4,11 @@
 #include <QMainWindow>
 #include <QTextEdit>
 #include <QPushButton>
+
 #include <QStatusBar>
 #include <QTimer>
-#include <QColorDialog>
 
+#include <QColorDialog>
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -15,6 +16,18 @@ class MainWindow : public QMainWindow {
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+
+
+    private slots:
+        void onChangeTextColor();  // Slot do zmiany koloru czcionki
+    void onUndo();  // Slot do wykonania operacji undo
+    void onRedo();  // Slot do wykonania operacji redo
+
+private:
+    QTextEdit *textEdit;  // Edytor tekstu
+    QPushButton *colorButton;  // Przycisk do zmiany koloru
+    QPushButton *undoButton;  // Przycisk undo
+    QPushButton *redoButton;  // Przycisk redo
 
 private slots:
 
