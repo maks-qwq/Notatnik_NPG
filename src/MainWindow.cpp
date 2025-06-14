@@ -1,7 +1,18 @@
 /*
-Projekt notatnika stworzony na zajęcia z Narzędzi Pracy Grupowej - AiR AGH I rok
+#-----------------------------------------------------------------------#
+|                                                                       |
+|  Projekt notatnika stworzony na zajęcia z Narzędzi Pracy Grupowej     |
+|                                AiR AGH I rok                          |
+|                                                                       |
+#-----------------------------------------------------------------------#
 
-Przy tworzeniu projektu korzystaliśmy z języka C++ i frameworku Qt
+#-----------------------------------------------------------------------#
+|                                                                       |
+| Przy tworzeniu projektu korzystaliśmy z języka C++ i frameworku Qt    |
+| A także z Trello i git'a                                              |
+|                                                                       |
+#-----------------------------------------------------------------------#
+
 
 */
 #include "MainWindow.h"
