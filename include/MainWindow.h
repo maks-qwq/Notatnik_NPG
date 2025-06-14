@@ -5,6 +5,7 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include <QStatusBar>
+#include <QTimer>
 #include <QColorDialog>
 
 
@@ -29,7 +30,13 @@ private:
     QTextEdit *textEdit;
     QPushButton *colorButton;
     QStatusBar *statusBar_;
+
+    void openFile();
+    void saveFile();
+    QTimer *autoSaveTimer; //zapisywanie z timerem
     QString currentFile;
+
+    
 
     QAction *boldAction;
     QAction *italicAction;
@@ -44,6 +51,7 @@ private:
     //void saveFile();
 
     QPushButton *colorButton;
+
 
 };
 

@@ -25,9 +25,15 @@ MainWindow::MainWindow(QWidget *parent)
     QWidget *centralWidget = new QWidget(this);
     QVBoxLayout *layout = new QVBoxLayout(centralWidget); //układ pionowy
 
+    autoSaveTimer = new QTimer(this); //stworzenie timera
+    connect(autoSaveTimer, &QTimer::timeout, this, &MainWindow::autoSaveFile);
+    autoSaveTimer->start(5 * 60 * 1000); //ustawienie 5 minut jako timer autozapisu
+
     textEdit = new QTextEdit(this);
+
     QPushButton *openButton = new QPushButton("Otwórz", this); //przycisk do otwierania pliku tekstowego
     QPushButton *saveButton = new QPushButton("Zapisz", this); //przycisk do zapisu pliku
+
     layout->addWidget(openButton);
     layout->addWidget(saveButton);
     layout->addWidget(textEdit);
@@ -57,6 +63,19 @@ MainWindow::~MainWindow() = default;
 //funkcja otwierająca plik i wczytująca jego zawartość
 void MainWindow::openFile() {
 
+    QString filename = QFileDialog::getOpenFileName(this, "Otwórz plik"); //otwarcie pliku .txt
+    if (!filename.isEmpty()) { //sprawdzenie czy plik istnieje
+        QFile file(filename);
+        if (file.open(QIODevice::ReadOnly | QIODevice::Text)) { // sprawdzenie czy plik jest otwarty i czy możemy na nim działać
+            QTextStream in(&file);
+            textEdit->setPlainText(in.readAll());
+            file.close();
+            currentFile = filename;
+            statusBar()->showMessage("Plik otwarty: " + filename); //komunikat o otwarciu pliku
+        } else {
+            QMessageBox::warning(this, "Błąd", "Nie można otworzyć pliku."); // komunikat o błędzie otwarcia pliku
+
+/*
     QString fileName = QFileDialog::getOpenFileName(this, "Otwórz plik", "", "Pliki tekstowe (*.txt)");
 	//sprwadzenie czy wybrano plik
     if (!fileName.isEmpty()) {
@@ -65,6 +84,8 @@ void MainWindow::openFile() {
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
             QMessageBox::warning(this, "Błąd", "Nie można otworzyć pliku.");
             return;
+*/
+
         }
         QTextStream in(&file);
         textEdit->setPlainText(in.readAll()); //wczytanie całej zawartości
@@ -75,17 +96,24 @@ void MainWindow::openFile() {
 }
 //funkcja zapisująca plik tekstowy
 void MainWindow::saveFile() {
-    QString filename = currentFile.isEmpty() ? QFileDialog::getSaveFileName(this, "Zapisz plik") : currentFile; //jeśli nie podano nazwy pliku, otwórz okno dialogowe zapisu
-    if (!filename.isEmpty()) {
+
+    QString filename = QFileDialog::getSaveFileName(this, "Zapisz plik"); //stworzenie przycisku umożliwiającego zapis
+    if (!filename.isEmpty()) { // sprawdzenie czy plik który próbujemy zapisać istnieje
+
+    //QString filename = currentFile.isEmpty() ? QFileDialog::getSaveFileName(this, "Zapisz plik") : currentFile; //jeśli nie podano nazwy pliku, otwórz okno dialogowe zapisu
+    //if (!filename.isEmpty()) {
+
         QFile file(filename);
-        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text)) { // sprawdzenie czy plik jest otwarty i czy możemy na nim działać
             QTextStream out(&file);
             out << textEdit->toPlainText();
             file.close();
             currentFile = filename;
-            statusBar()->showMessage("Plik zapisany: " + filename);
+
+            statusBar()->showMessage("Plik zapisany: " + filename); //zmiana statusu pliku
+
         } else {
-            QMessageBox::warning(this, "Błąd", "Nie można zapisać pliku.");
+            QMessageBox::warning(this, "Błąd", "Nie można zapisać pliku."); // wyrzucenie błędu z powodu problemu z plikiem
         }
     }
 }
@@ -95,6 +123,25 @@ void MainWindow::newFile() {
     currentFile.clear();
     statusBar()->showMessage("Nowy plik utworzony");
 }
+
+
+void MainWindow::autoSaveFile() { // funkcja autozapisu
+    if (currentFile.isEmpty()) { // nie zapisuje jeśli plik nie został wybrany
+        return;
+    }
+
+    QFile file(currentFile); //nadpisanie pliku
+    if (file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        QTextStream out(&file);
+        out << textEdit->toPlainText();
+        file.close(); //zamknięcie pliku
+        statusBar()->showMessage("Autozapisano: " + currentFile); //wiadomość do użytkownika że plik został zapisany
+    } else {
+        statusBar()->showMessage("Blad autozapisu"); //wiadomość do użytkownika że jest problem z autozapisem pliku
+    }
+}
+
+MainWindow::~MainWindow() = default;
 
 //funkcja pogrubienia
 void MainWindow::toggleBold() {
@@ -114,3 +161,4 @@ void MainWindow::toggleUnderline() {
     fmt.setFontUnderline(!textEdit->fontUnderline());
     textEdit->mergeCurrentCharFormat(fmt);
 }
+
