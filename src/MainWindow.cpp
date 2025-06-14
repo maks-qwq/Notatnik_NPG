@@ -1,3 +1,20 @@
+/*
+#-----------------------------------------------------------------------#
+|                                                                       |
+|  Projekt notatnika stworzony na zajęcia z Narzędzi Pracy Grupowej     |
+|                                AiR AGH I rok                          |
+|                                                                       |
+#-----------------------------------------------------------------------#
+
+#-----------------------------------------------------------------------#
+|                                                                       |
+| Przy tworzeniu projektu korzystaliśmy z języka C++ i frameworku Qt    |
+| A także z Trello i git'a                                              |
+|                                                                       |
+#-----------------------------------------------------------------------#
+
+
+*/
 #include "MainWindow.h"
 #include <QVBoxLayout>
 #include <QWidget>
@@ -30,11 +47,11 @@ MainWindow::MainWindow(QWidget *parent)
     connect(autoSaveTimer, &QTimer::timeout, this, &MainWindow::autoSaveFile);
     autoSaveTimer->start(5 * 60 * 1000); //ustawienie 5 minut jako timer autozapisu
 
-    textEdit = new QTextEdit(this);
 
-
+    textEdit = new QTextEdit(this); // stworzenie QTextEdit (edytor tekstu)
     QPushButton *openButton = new QPushButton("Otwórz", this); //przycisk do otwierania pliku tekstowego
     QPushButton *saveButton = new QPushButton("Zapisz", this); //przycisk do zapisu pliku
+
 
     layout->addWidget(openButton);
     layout->addWidget(saveButton);
@@ -54,6 +71,13 @@ MainWindow::MainWindow(QWidget *parent)
     // Połączenia sygnałów z funkcjami
     connect(openButton, &QPushButton::clicked, this, &MainWindow::openFile);
     connect(saveButton, &QPushButton::clicked, this, &MainWindow::saveFile);
+
+
+    colorButton = new QPushButton("Zmien koloru tekstu", this); // przycisk do zmiany koloru czcionki
+    layout ->addWidget(colorButton);
+
+    // połączenie przycisku z odpowiednim slotem
+
     connect(colorButton, &QPushButton::clicked, this, &MainWindow::onChangeTextColor);
     connect(undoButton, &QPushButton::clicked, this, &MainWindow::onUndo);
     connect(redoButton, &QPushButton::clicked, this, &MainWindow::onRedo);
@@ -71,14 +95,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     // ---------------- Menu Plik ---------------- //
     QMenu *fileMenu = menuBar()->addMenu("Plik");
+        // opcja nowy w plik
+        fileMenu->addAction("Nowy", this, &MainWindow::newFile);
+        //opcja otwórz w plik
+        fileMenu->addAction("Otwórz", this, &MainWindow::openFile);
+        // opcja zapisz w plik
+        fileMenu->addAction("Zapisz", this, &MainWindow::saveFile);
 
-    fileMenu->addAction("Nowy", this, &MainWindow::newFile);
-    fileMenu->addAction("Otwórz", this, &MainWindow::openFile);
-    fileMenu->addAction("Zapisz", this, &MainWindow::saveFile);
-
+    // ustawienie wymiarów okna notatnika
     resize(800, 600);
+    //ustawienie położenia notatnika na ekranie
     move(100, 100);
 }
+
 MainWindow::~MainWindow() = default;
 
 
@@ -95,6 +124,7 @@ void MainWindow::onChangeTextColor() {
 void MainWindow::onUndo() {
     if (textEdit->document()->isUndoAvailable()) {
         textEdit->undo();
+
     }
 }
 
@@ -115,6 +145,12 @@ void MainWindow::openFile() {
 
 /*
 
+-------------- a tutaj doszło do podwójnego napisania kodu o tych samych funkcjonalnościach --------------
+
+// ---------- funkcja Otwórz plik --------------- //
+void MainWindow::openFile() {
+
+
     QString fileName = QFileDialog::getOpenFileName(this, "Otwórz plik", "", "Pliki tekstowe (*.txt)");
     if (!fileName.isEmpty()) {
         QFile file(fileName);
@@ -132,7 +168,9 @@ void MainWindow::openFile() {
     }
 }
 
-// Zapisywanie pliku tekstowego
+
+// ---------- funkcja zapisz plik --------------- //
+
 void MainWindow::saveFile() {
 
     QString filename = QFileDialog::getSaveFileName(this, "Zapisz plik"); //stworzenie przycisku umożliwiającego zapis
@@ -156,14 +194,22 @@ void MainWindow::saveFile() {
     }
 }
 
-    }
-}
-//funkcja tworząca nowy plik
-void MainWindow::newFile() {
+
+
+// ---------- funkcja nowy plik --------------- //
+void MainWindow::newFile()
+{
     textEdit->clear();
     currentFile.clear();
     statusBar()->showMessage("Nowy plik utworzony");
 }
+
+// Funkcja zmieniająca kolor czcionki
+void MainWindow::onChangeTextColor() {
+    QColor color = QColorDialog::getColor(textEdit->textColor(), this, "Wybierz kolor tekstu");
+    if (color.isValid()) {
+        textEdit->setTextColor(color);
+
 
 
 
@@ -187,6 +233,7 @@ void MainWindow::autoSaveFile() { // funkcja autozapisu
         statusBar()->showMessage("Autozapisano: " + currentFile); //wiadomość do użytkownika że plik został zapisany
     } else {
         statusBar()->showMessage("Blad autozapisu"); //wiadomość do użytkownika że jest problem z autozapisem pliku
+
     }
 }
 
