@@ -4,6 +4,10 @@
 #include <QMainWindow>
 #include <QTextEdit>
 #include <QPushButton>
+
+#include <QStatusBar>
+#include <QTimer>
+
 #include <QColorDialog>
 
 class MainWindow : public QMainWindow {
@@ -39,7 +43,13 @@ private:
     QTextEdit *textEdit;
     QPushButton *colorButton;
     QStatusBar *statusBar_;
+
+    void openFile();
+    void saveFile();
+    QTimer *autoSaveTimer; //zapisywanie z timerem
     QString currentFile;
+
+    
 
     QAction *boldAction;
     QAction *italicAction;
