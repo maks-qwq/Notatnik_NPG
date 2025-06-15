@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 #include <QTextEdit>
-#include <QPushButton>
 
 #include <QStatusBar>
 #include <QTimer>
@@ -22,6 +21,9 @@ public:
         void onChangeTextColor();  // Slot do zmiany koloru czcionki
     void onUndo();  // Slot do wykonania operacji undo
     void onRedo();  // Slot do wykonania operacji redo
+
+private slots:
+    void showAboutDialog(); // ← Dodany slot
 
 private:
     QTextEdit *textEdit;  // Edytor tekstu
