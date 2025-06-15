@@ -4,15 +4,15 @@
 ## Backlog zadań
 
 ### 1. **Podstawowe funkcje**
-- [x] **Otwieranie plików**  
+-  **Otwieranie plików**  
   Zadanie polega na zaimplementowaniu funkcjonalności otwierania istniejących plików tekstowych w aplikacji.  
   _Oczekiwany wynik:_ Możliwość otwierania plików w formacie .txt i ich edytowanie.
 
-- [x] **Tworzenie nowych plików**  
+-  **Tworzenie nowych plików**  
   Zadanie polega na umożliwieniu użytkownikowi tworzenia nowych, pustych plików tekstowych.  
   _Oczekiwany wynik:_ Możliwość rozpoczęcia pracy z nowym plikiem.
 
-- [x] **Edycja plików**  
+-  **Edycja plików**  
   Zadanie polega na umożliwieniu użytkownikowi edytowania treści plików tekstowych.  
   _Oczekiwany wynik:_ Edycja i zapis zmian w pliku.
 
@@ -21,7 +21,7 @@
   Zadanie polega na dodaniu funkcji zmiany czcionki w edytowanym pliku tekstowym.  
   _Oczekiwany wynik:_ Użytkownik może wybrać czcionkę z listy dostępnych czcionek.
 
-- [x] **Zmiana koloru czcionki**  
+-  **Zmiana koloru czcionki**  
   Zadanie polega na implementacji funkcji pozwalającej na zmianę koloru czcionki w edytowanym pliku.  
   _Oczekiwany wynik:_ Użytkownik może zmieniać kolor tekstu w zależności od preferencji.
 
@@ -64,11 +64,9 @@
 | Otwieranie plików        | Wysoki    | Ukończono        |
 | Tworzenie nowych plików  | Wysoki    | Ukończono        |
 | Edycja plików            | Wysoki    | Ukończono        |
-| Zmiana czcionki          | Średni    | Do zrealizowania |
+| Zmiana czcionki          | Średni    | Ukończono        |
 | Zmiana koloru czcionki   | Średni    | Ukończono        |
-| Skróty klawiszowe        | Średni    | Do zrealizowania |
-| Komunikaty błędów        | Średni    | Do zrealizowania |
-| Testowanie funkcji       | Wysoki    | Do zrealizowania |
-| Poprawki i optymalizacja | Średni    | Do zrealizowania |
-| Dokumentacja użytkownika | Niski     | Do zrealizowania |
-| Raport ze spotkań        | Wysoki    | Do zrealizowania |
+| Skróty klawiszowe        | Średni    | Ukończono        |
+| Komunikaty błędów        | Średni    | Ukończono        |
+| Testowanie funkcji       | Wysoki    | Ukończono        |
+| Raport ze spotkań        | Wysoki    | Ukończono        |
