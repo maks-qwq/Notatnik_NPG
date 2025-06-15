@@ -70,3 +70,68 @@
 | Komunikaty błędów        | Średni    | Ukończono        |
 | Testowanie funkcji       | Wysoki    | Ukończono        |
 | Raport ze spotkań        | Wysoki    | Ukończono        |
+
+
+## Zasady:
+- **Priorytety**:
+  - **Wysoki** (W)
+  - **Średni** (Ś)
+  - **Niski** (N)
+- **Status**:
+  - **Do zrobienia** (DZ)
+  - **W trakcie** (WT)
+  - **Zakończone** (Z)
+
+---
+
+## Zadania
+
+### 1. **Otwieranie pliku**
+- **Opis**: Implementacja funkcji otwierania plików tekstowych w aplikacji.
+- **Priorytet**: Wysoki (W)
+- **Osoba odpowiedzialna**: Maks
+- **Status**: Zakończone (Z)
+
+### 2. **Zapis pliku**
+- **Opis**: Implementacja opcji zapisu pliku na dysku.
+- **Priorytet**: Wysoki (W)
+- **Osoba odpowiedzialna**: Maks
+- **Status**: Zakończone (Z)
+
+
+### 3. **Zmiana czcionki**
+- **Opis**: Funkcja zmiany czcionki w edytorze tekstu.
+- **Priorytet**: Średni (Ś)
+- **Osoba odpowiedzialna**: Wojtek
+- **Status**: Zakończone (Z)
+
+### 4. **Zmiana koloru czcionki**
+- **Opis**: Implementacja zmiany koloru czcionki.
+- **Priorytet**: Średni (Ś)
+- **Osoba odpowiedzialna**: Hubert
+- **Status**: Zakończone (Z)
+
+### 5. **Undo / Redo**
+- **Opis**: Implementacja funkcji cofnij i ponów dla edytowanego tekstu.
+- **Priorytet**: Wysoki (Ś)
+- **Osoba odpowiedzialna**: Hubert
+- **Status**: Zakończone (Z)
+
+### 6. **Testowanie aplikacji**
+- **Opis**: Przeprowadzenie testów aplikacji.
+- **Priorytet**: Niski (N)
+- **Osoba odpowiedzialna**: Wojtek
+- **Status**: Zakończone (Z)
+
+### 7. **Skróty klawiszowe**
+- **Opis**: Przeprowadzenie testów aplikacji.
+- **Priorytet**: Niski (N)
+- **Osoba odpowiedzialna**: Michał
+- **Status**: Zakończone (Z)
+
+### 8. **Komunikaty błędów**
+- **Opis**: Przeprowadzenie testów aplikacji.
+- **Priorytet**: Niski (N)
+- **Osoba odpowiedzialna**: Adrain
+- **Status**: Zakończone (Z)
+---
